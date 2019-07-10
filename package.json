@@ -1,17 +1,12 @@
 {
-  "name": "generator-go",
-  "version": "0.1.4",
-  "description": "A yeoman generator to scaffold a simple functionnal golang app",
+  "name": "generator-isv-ci-go",
+  "version": "0.1.0",
+  "description": "scaffold for an idiomatic cli",
   "files": [
     "app"
   ],
   "keywords": [
-    "yeoman-generator",
-    "scaffold",
-    "golang",
-    "app",
-    "boilerplate",
-    "go"
+    "isv-ci"
   ],
   "dependencies": {
     "mkdirp": "^0.5.1",
