@@ -42,6 +42,8 @@ module.exports = class extends Generator {
             "version/version_test.go",
             "features/features_suite_test.go",
             "features/version_test.go",
+            "ci/tasks/build.yml",
+            "ci/tasks/test.yml",
         ].forEach((filename) => {
             this.fs.copyTpl(
                 this.templatePath(filename),
