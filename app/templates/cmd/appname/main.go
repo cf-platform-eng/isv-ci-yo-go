@@ -19,7 +19,9 @@ func main() {
 		"version",
 		"print version",
 		fmt.Sprintf("print %s version", <%= appName %>.APP_NAME),
-		&version.VersionOpt{})
+		&version.VersionOpt{
+			Out: os.Stdout,
+		})
 	if err != nil {
 		fmt.Println("Could not add version command")
 		os.Exit(1)

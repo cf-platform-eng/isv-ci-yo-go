@@ -38,6 +38,8 @@ module.exports = class extends Generator {
             "Makefile",
             "README.md",
             "version/version.go",
+            "version/version_suite_test.go",
+            "version/version_test.go",
             "features/features_suite_test.go",
             "features/version_test.go",
         ].forEach((filename) => {
