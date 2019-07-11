@@ -12,7 +12,7 @@ import (
 	"github.com/onsi/gomega/gexec"
 )
 
-var _ = FDescribe("Report version", func() {
+var _ = Describe("Report version", func() {
 	steps := NewSteps()
 
 	Scenario("version command reports version", func() {

@@ -16,5 +16,5 @@
 1. Run the generator
 
     ```bash
-    yo isv-ci-go
+    yo yo-go
     ```
