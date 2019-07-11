@@ -1,35 +1,28 @@
 {
-  "name": "generator-isv-ci-go",
+  "name": "generator-yo-go",
   "version": "0.1.0",
   "description": "scaffold for an idiomatic cli",
   "files": [
     "app"
   ],
   "keywords": [
-    "isv-ci"
+    "isv-ci",
+    "yo-go"
   ],
   "dependencies": {
-    "mkdirp": "^0.5.1",
     "yeoman-generator": "^3.2.0"
   },
   "engines": {
     "node": ">=6.9.0"
   },
   "author": {
-    "name": "Benjamin Chenebault",
-    "email": "contact@benjaminchenebault.net",
-    "url": "http://benjaminchenebault.net"
+    "name": "Pivotal ISV CI team",
+    "email": "cf-isv-dashboard@pivotal.io",
+    "url": "https://github.com/cf-platform-eng/isv-ci-yo-go.git"
   },
-  "contributors": [
-    {
-      "name": "Randy Lebeau",
-      "email": "randylebeau@gmail.com",
-      "url": "http://github.com/supremetechnopriest"
-    }
-  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/bench/generator-go"
+    "url": "https://github.com/cf-platform-eng/isv-ci-yo-go.git"
   },
   "license": "MIT"
 }

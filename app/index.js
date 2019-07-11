@@ -1,8 +1,4 @@
-'use strict'
-
-const path = require('path')
 const Generator = require('yeoman-generator')
-const mkdir = require('mkdirp')
 
 module.exports = class extends Generator {
     constructor(args, opts) {
@@ -10,6 +6,7 @@ module.exports = class extends Generator {
 
         this.argument("appname", {type: String, required: true})
         this.option("appdir", {type: String, default: "."})
+        this.option("repo", {type: String, default: "github.com/cf-platform-eng/<appname>"})
     }
 
 
@@ -22,50 +19,49 @@ module.exports = class extends Generator {
         const appName = this.options.appname.replace(/\s+/g, '-').toLowerCase()
         const location = this.options.appdir + ((this.options.appdir.substr(-1) === '/') ? '' : '/')
         const appDir = location + appName
+        const repoURL = this.options.repo.replace(/<appname>/g, appName)
 
+        this.destinationRoot(appDir)
         console.log('Generating app dir \'' + appDir + '\'')
 
-        // let pkgDir = this.destinationPath('pkg');
-        // let srcDir = this.destinationPath(path.join('src/', this.repoUrl));
-        // let binDir = this.destinationPath('bin');
-        //
-        // mkdir.sync(pkgDir);
-        // mkdir.sync(srcDir);
-        // mkdir.sync(binDir);
-        //
-        // this.fs.copy(
-        //     this.templatePath('_gitignore'),
-        //     path.join(srcDir, '.gitignore')
-        // );
-        // this.fs.copy(
-        //     this.templatePath('_hello.go'),
-        //     path.join(srcDir, '/hello/hello.go')
-        // );
-        // this.fs.copy(
-        //     this.templatePath('_hello_test.go'),
-        //     path.join(srcDir, '/hello/hello_test.go')
-        // );
-        //
-        // let tmplContext = {
-        //     appName: this.appName,
-        //     repoUrl: this.repoUrl
-        // };
-        //
-        // this.fs.copyTpl(
-        //     this.templatePath('_main.go'),
-        //     path.join(srcDir, 'main.go'),
-        //     tmplContext
-        // );
-        // this.fs.copyTpl(
-        //     this.templatePath('_README.md'),
-        //     path.join(srcDir, 'README.md'),
-        //     tmplContext
-        // );
-        // this.fs.copyTpl(
-        //     this.templatePath('_Makefile'),
-        //     path.join(srcDir, 'Makefile'),
-        //     tmplContext
-        // );
+        let context = {
+            appPackage: appName,
+            appName: appName,
+            repoURL: repoURL,
+        };
+
+        [
+            ".gitignore",
+            "config.go",
+            "constants.go",
+            "go.mod",
+            "Makefile",
+            "README.md",
+            "version/version.go",
+            "features/features_suite_test.go",
+            "features/version_test.go",
+        ].forEach((filename) => {
+            this.fs.copyTpl(
+                this.templatePath(filename),
+                this.destinationPath(filename),
+                context
+            )
+        })
+
+        this.fs.copyTpl(
+            this.templatePath("cmd/appname/main.go"),
+            this.destinationPath("cmd/" + appName + "/main.go"),
+            context
+        )
+
+        console.log(
+            'When done, try:\n' +
+            '\n' +
+            '  cd ' + this.destinationPath() + '\n' +
+            '  make\n' +
+            '  ./build/' + appName + '\n' +
+            '\n'
+        )
 
     }
 }
