@@ -16,5 +16,5 @@
 1. Run the generator
 
     ```bash
-    yo yo-go
+    yo yo-go <app name>
     ```
