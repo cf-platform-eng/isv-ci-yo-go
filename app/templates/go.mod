@@ -1,6 +1,6 @@
 module <%= repoURL %>
 
-go 1.12
+go 1.14
 
 require (
 	github.com/MakeNowJust/heredoc v0.0.0-20171113091838-e9091a26100e
